@@ -10,8 +10,7 @@ hello，这是我的新窝！
 .element:hover { height: 200px; } {% endhighlight %}
 
 
-public class Person{
+{% highlight java %}public class Person{
           public static void main(String[] args){
-
     }
 }

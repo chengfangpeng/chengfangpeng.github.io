@@ -19,18 +19,7 @@ layout: default
     <a href="https://www.evernote.com/clip.action?url={{ page.url | prepend: site.baseurl | prepend: site.url }}&title={{ page.title }}" target="_blank" class="post-share-icon evernote"></a>
     <a href="http://service.weibo.com/share/share.php?url={{ page.url | prepend: site.baseurl | prepend: site.url }}&title={{ page.title }}" target="_blank" class="post-share-icon weibo"></a>
   </div>
-</div>
-
-{% if site.disqus_shortname %}
-<div class="comment container">
-  <div id="disqus_thread">
-    <a href=""></a>
-
-
-  </div>
-
-
-     <!-- 多说评论框 start -->
+    <!-- 多说评论框 start -->
   <div class="ds-thread" data-thread-key={{ page.tags }} data-title={{page.title}} data-url="http://chengfangpeng.github.io/{{ page.url }}"></div>
 
    
@@ -50,5 +39,17 @@ var duoshuoQuery = {short_name:"xray"};
 <!-- 多说公共JS代码 end -->
 
       </div>
+</div>
+
+{% if site.disqus_shortname %}
+<div class="comment container">
+  <div id="disqus_thread">
+    <a href=""></a>
+
+
+  </div>
+
+
+   
 </div>
 {% endif %}

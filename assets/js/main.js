@@ -49,7 +49,7 @@ function pajx_loadDuodsuo(){
         var el = document.createElement('div');
         el.setAttribute('data-thread-key',$(dus).attr("data-thread-key"));//必选参数
         el.setAttribute('data-url',$(dus).attr("data-url"));
-       
+        DUOSHUO.EmbedThread(el);
         $(dus).html(el);
     }
 }

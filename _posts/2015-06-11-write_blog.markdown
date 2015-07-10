@@ -6,7 +6,14 @@ categories: 其他
 tags: 其他
 ---
 
-{% highlight css %} .element { height: 100px; transition: height 2s linear; }
+{% highlight java %}
+public calss Person{
 
-.element:hover { height: 200px; } {% endhighlight %}
+	public static void main(String[] args){
 
+		System.out.println("hello, blog");
+	}
+
+}
+
+{% endhighlight %}

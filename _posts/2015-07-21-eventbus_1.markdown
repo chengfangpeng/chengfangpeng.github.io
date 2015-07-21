@@ -5,8 +5,9 @@ date:   2015-07-21
 categories: android_open_source
 tags: android_open_source
 ---
-#EventBus探究(一)  #
+
 ## 概述 ##
+
 EventBus是一款android发布/订阅的事件总线类库，主要用在android中
 Activities，Fragments，以及后台线程之间的关联和消息传递，对事件的发送者和关联者进行解耦，避免了各组件直接交互复杂的依赖关系以及生命周期产生的问题。从而使我们的代码更简单更更高效。
 ![](https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png)

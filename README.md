@@ -1,43 +1,118 @@
-# 3-Jekyll Theme
+#Please Delete this line!
 
-新版 3-Jekyll，当前完成度 80%，预览请访问 [http://peiwen.lu](http://peiwen.lu)，[Github repo](https://github.com/P233/P233.github.io)。
+## 选择服务商
 
-旧版请在 [https://github.com/P233/3-Jekyll/releases](https://github.com/P233/3-Jekyll/releases) 下载。
-hello
+目前支持Jekyll+Git方式部署博客比较方便的应该是国外的Github与国内的Gitcafe，出于稳定、速度、便捷的角度我们选择Gitcafe，官网地址：[http://gitcafe.com](http://gitcafe.com/signup?invited_by=saymagic)，如没有账号，请自行注册。
+
+## 派生代码库
+
+我将我的博客base版本发布到了Gitcafe，你可以在此[https://gitcafe.com/saymagic/blog](https://gitcafe.com/saymagic/blog),点击`派生`按钮：
+
+![](http://cdn.saymagic.cn/o_1a0efi8uva2p1pjj8qv11dgb9.png)
+
+即可将代码Clone到自己的Gitcafe代码库中:
+
+![](http://cdn.saymagic.cn/o_1a0efps7h1951bguhtvbd39the.png)
+
+接下来你需要做两件事就可以看到自己的博客了：
+
+* 修改项目名称：
+
+    点击项目设置 -> 将项目名称(blog)更改为自己的用户名，例如，下面的账户需要将`blog`改为`827273693 `：
+    
+    ![](http://cdn.saymagic.cn/o_1a0eg4iat19bm8pr1kasgb01s369.png)
+    
+
+* 做一次提交
+
+    派生过来的代码默认情况下Gitcafe只会作为代码存储，不会部署到对应的Jekyll服务上去，我们需要做一次提交，为此，我故意在README.md文件中增加了一行:
+    
+        # Please Delete this line!
+
+    直接点击`编辑`:
+
+![](http://cdn.saymagic.cn/o_1a0egfu6v1o6o9vbjm91fbm16k0e.png)
+
+   将多余的 一行删除，然后点击下面的提交按钮：
+   
+![](http://cdn.saymagic.cn/o_1a0egjs7p8qak6m15g4e6m18n99.png)
+
+至此，您的博客就搭建好了，访问域名：gitcafe用户名.gitcafe.io，例如[827273693.gitcafe.io](827273693.gitcafe.io)见证神奇吧：
+
+![](http://cdn.saymagic.cn/o_1a0egr4kb1p9i7uv221eo0u5l9.png)
+
+## 配置域名
+
+如果你有自己的域名，可以很方便的进行配置，Gitcafe提供了可视化的界面：
+
+点击`项目设置` -> `Pages服务`：
+
+![](http://cdn.saymagic.cn/o_1a0eh3833l28t5beht1mj39e7e.png)
+
+右面的提醒写的很是明白，输入框中写入您想绑定的域名，然后在域名服务商里增加一条 CNAME 记录, 将它指向 gitcafe.io。就这样，稍后即可访问。
 
 
-## 针对旧版的改进
+## 化为己有
 
-* 侧边栏使用 Tag 或 Category 做为文章分类，默认 Tag。
-* 自动生成侧边栏分类标签，基本不需要修改模板文件。但标签顺序由 Jekyll 根据时间顺序生成，需要手动调整顺序只能修改 `_includes/sidebar.html`，格式是 `<li class="sidebar-tag" data-filter="TAG">TAG</li>`，替换 `TAG`，大小写敏感。
-* 更加全面的 Sass 变量，方便个性化主题样式。
-* 暂定取消文章的标题目录。
-* 取消了嵌入 Codepen。
+> 接下来的部分涉及到Git了，本文默认您已有Git基础，如果没有，欢迎加入Git家族，百利无一害。
+
+我们首先将博客代码clone到本地：
+
+    git clone https://gitcafe.com/***/***.git
+
+目录结构如下：
+
+![](http://cdn.saymagic.cn/o_1a0ehkcmr1os11q6dads3o11k5l9.png)
+
+我将所有的配置都集中到了`_config.yml`文件，你可以按照自己的需求进行修改，比如author、title等等，博客默认使用多说评论，你需要为`duoshuo_short_name`配置你自己的多说shortname。如果你需要使用google站内搜索，可以配置`google_cx`，这样在点击第二栏顶部搜索框时就会有弹出google站内搜索
+：
+
+![](http://cdn.saymagic.cn/o_1a0ehtbjg10bnromac01ssf4qa9.png)
+
+接下来依次执行下面的git命令来将修改提交至Gitcafe库：
+
+    git add .
+
+    git commit -m 'fix'
+    
+    git push -u origin gitcafe-pages
+    
+注意的是，我们只有`gitcafe-pages`分支，Gitcafe只会将这个分支下的内容作为Jekyll进行处理。因此你要保证以后修改的内容都要发布到`gitcafe-pages`分支才会有效果。
+
+## 编写博客
+
+Jekyll会将`_post`目录下的文件映射为博客里的具体文章，现在，你的`_post`目录下拥有一个名为`2015-05-18-my-first-blog.md`的文件，格式为`时间`-`文章名称`.md,后面如果你想新建博文的话也需按此格式。
+
+我们打开这篇文章，上面会有这么一块：
+
+    ---
+    layout: post
+    keywords: Start
+    description: 我的第一篇博客
+    title: 我的第一篇博客
+    categories: [日常]
+    tags: [日常]
+    group: archive
+    icon: globe
+    ---
+
+这块是写给Jekyll看的，layout暂时固定为post, keywords、description、title可以按照自己的需求来写，categories是大分类，tags是小分类，后面两个值固定。以后添加文章的时候一定记得在文章的头部填写这块代码。并且`---`一定要顶行。然后就可以在下面使用MarkDown来编写文章了！
+
+赶快去新建一篇博客然后push上去看看效果吧！
 
 
-## TODO
+## 高亮代码
 
-* 搜索功能
-* Webkit 换页动画
-* 改进文章筛选动画
-* <del>集成 Google Analytics</del>
-* 文章时间，Category，Tag 归档页面
-* Favicon
-* Mobile touch swipe
+细心的你会发现博客的代码是具有高量效果的，这要感谢google的prettify.css库，因为个人喜好的不同，视觉的处女座会有一套自己的代码高亮风格，更改起来很简单，只需要编辑`/assets/js/prettify/prettify.css`文件里的rgb值即可。
 
-其他建议欢迎[提交 issue](https://github.com/P233/3-Jekyll/issues/new)
+同理，`/assets`目录下存放的主要是css与js代码，大都是一些第三方库，自定义的js存放在`script.js`中，自定义的css存放在`style.css`中。
 
 
-## 使用
+## 写在最后
 
-### 设置 `_config.yml`
+一个技术博客不仅需要文字和代码，与文相配的图片也是不可避免的，在Jekyll中我们可以新建一个图片文件夹来专门存放图片，但这样缺点比较多，在下篇博客中，我将带大家自己Hack一个专属的免费图床，敬请期待。
 
-`_config.yml` 除基本的站点设置外，新加入了社交链接与评论设置。将需要添加的社交帐号填入对应设置，并取消注释，会在头像下方增加一条社交帐号的链接。支持 Twitter, Weibo, Github, Codepen 以及 Dribbble。此外，填入 Disqus 的 shortname 也会启用 Disqus 评论。 `filter` 选项选择使用 `tag` 或 `category` 作为文章分类。
 
-### 修改样式
+## 文章地址
 
-样式相关的 Sass 变量都存储在 `/css/main.sass` 文件中，修改这个文件可以满足大部分样式定制的需求。建议首先修改 `$gradient-start` 与 `$gradient-end` 两个变量，给自己的博客使用独一无二的侧边栏背景。
-
-### 替换图片
-
-请不要忘记替换 `/assets/img/` 内的图片。`avatar.jpg` 是侧边栏头像的图片，`qrcode.jpg` 会在提示浏览器不兼容时使用。[QR Code 生成器](https://www.unitag.io/qrcode)
+[http://blog.saymagic.cn/2015/09/30/learn-jekyll.html](http://blog.saymagic.cn/2015/09/30/learn-jekyll.html)

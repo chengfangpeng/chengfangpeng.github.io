@@ -1,35 +1,32 @@
-# Site settings
-title: 薛定谔的猫
-email: chengfangpeng00@gmail.com
-description: Fuck code
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-permalink: /:year/:title
+permalink: /:year/:month/:day/:title.html
+markdown: kramdown
 
-# Sidebar filter
-# Choose 'tag' or 'category' as filter in sidebar.
-filter: 'tag'
+kramdown:
+  input: GFM
 
+# 作者信息
+author: 
+  name: heaven旅行包
+  email: chengfangpeng00@gmail.com
+  link: http://chengfangpeng.com
+  weibo: http://weibo.com/havencfp
+  github: http://github.com/chengfangpeng
 
-# Social account
-# twitter:  username
+# 站点信息
+title: heaven's blog
+description: heaven旅行包的博客
+url: http://chengfangpeng.com
+rss_url: /pages/atom.xml
+
 weibo:    havencfp
 github:   chengfangpeng
-# codepen:  username
-# dribbble: username
 
+#多说配置
+duoshuo_short_name: xray
 
-# Comment
-# disqus_shortname: discussion_shortname
+#Google站内搜索
+google_cx: g***
 
-
-# Google Analytics
-# google_analytics: tracking_ID
-
-
-# Build settings
-markdown: kramdown
-sass:
-  style: compressed
-gems:
-  - jekyll-sitemap
+# avatar头像及Favicon
+avatar: http://img3.imgtn.bdimg.com/it/u=888205968,2778669945&fm=21&gp=0.jpg
+favicon: http://img3.imgtn.bdimg.com/it/u=888205968,2778669945&fm=21&gp=0.jpg

@@ -3,7 +3,7 @@ layout: post
 title:  "EventBus探究(一)"
 date:   2015-07-21
 categories: android
-tags: android_open_source
+tags: android
 ---
 
 ## 概述 ##

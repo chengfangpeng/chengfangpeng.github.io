@@ -1,10 +1,15 @@
 ---
-layout: post
-title:  "EventBus探究(一)"
-date:   2015-07-21
-categories: android
-tags: android
+layout:     post
+title:      "EventBus探究(一)"
+subtitle:   " \"EventBus初探\""
+date:       2015-07-21 12:00:00
+author:     "X-ray"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - android
 ---
+
+> “Yeah It's on. ”
 
 ## 概述 ##
 
@@ -15,8 +20,9 @@ Activities，Fragments，以及后台线程之间的关联和消息传递，对�
 ## 简单的使用流程 ##
 
 1. 定义一个事件
-	{% highlight java %}
-public class MessageEvent {
+
+```
+	public class MessageEvent {
 
     private String message;
 
@@ -28,22 +34,34 @@ public class MessageEvent {
         this.message = message;
     }
 }
-{% endhighlight %}
+```
+
 2.订阅/注册
-{% highlight java %}
- EventBus.getDefault().register(this); 
-{% endhighlight %}
+
+ 
+
+```
+EventBus.getDefault().register(this); 
+```
+
 3.发布
-{% highlight java %}
+
+```
  EventBus.getDefault().post(me);
-{% endhighlight %}
+```
+
 4.取消订阅
-{% highlight java %}
- EventBus.getDefault().unregister(this);
-{% endhighlight %}
+
+ 
+
+```
+EventBus.getDefault().unregister(this);
+```
+
 
 下面是完整代码
-{% highlight java %}
+
+```
 public class MainActivity extends AppCompatActivity {
 
     private static final String  TAG = "MainActivity";
@@ -81,11 +99,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, event.getMessage());
     }
 }
+```
 
-{% endhighlight %}
 
 ## 总结 ##
 以上只是EventBus中最简单的使用，真正的项目中要比这复杂的多，但是麻雀虽小五脏俱全，上边的例子已经很好的说明了EventBus的工作流程，之后我也将对EventBus这个类库进行更深入的探究。
 
 ## 附录 ##
 [EventBus github](https://github.com/greenrobot/EventBus "EventBus github地址")
+
+

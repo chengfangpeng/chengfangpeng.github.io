@@ -6,7 +6,7 @@ date:       2016-01-10 12:00:00
 author:     "X-ray"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - Git
+    - Ubuntu
 ---
 前言
 --

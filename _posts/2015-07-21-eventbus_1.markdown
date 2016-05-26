@@ -6,7 +6,7 @@ date:       2015-07-21 12:00:00
 author:     "X-ray"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - android
+    - Android
 ---
 
 > “Yeah It's on. ”

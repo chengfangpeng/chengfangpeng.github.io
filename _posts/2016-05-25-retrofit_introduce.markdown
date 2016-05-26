@@ -6,7 +6,7 @@ date:       2016-04-25 12:00:00
 author:     "X-ray"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - 生活
+    - Android 
 ---
 
 ## 前言

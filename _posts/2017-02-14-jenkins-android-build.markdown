@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Jenkins＋Gradle搭建Android持续集成编译环境"
-subtitle:   " Jenkins＋Gradle搭建Android持续集成编译环境"
+subtitle:   "Jenkins＋Gradle搭建Android持续集成编译环境"
 date:       2017-02-14 12:00:00
 author:     "X-ray"
 header-img: "img/post-bg-2015.jpg"

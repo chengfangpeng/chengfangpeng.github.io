@@ -124,9 +124,9 @@ tip:如果在下载插件中出现了失败，也可以点到插件详情里，�
 
 ## Android项目构建配置
 
-1. 在Jenkins首页“新建”　－> "构建一个自由风格的软件项目"并输入Item名称
+- 在Jenkins首页“新建”　－> "构建一个自由风格的软件项目"并输入Item名称
 
-2. 这样在Jenkins首页就看到这个项目了，点击进入项目详情页，点击左侧的配置，我们用git仓库为例配置代码库，找到“源码管理”　->选择git,如果使用HTTP协议直接配置HTTP地址即可，如果使用了SSH方式访问git,需要配置Credentials，点击“Add”->jenkins, 在Kind中选择“SSH Username with private key”, Username 选择服务器主机用户，例如:root, Private Key 选择　Enter directly,将你服务器的ssh私钥复制过来，然后保存，这样在Credentials中选择该用户就可以了。
+- 这样在Jenkins首页就看到这个项目了，点击进入项目详情页，点击左侧的配置，我们用git仓库为例配置代码库，找到“源码管理”　->选择git,如果使用HTTP协议直接配置HTTP地址即可，如果使用了SSH方式访问git,需要配置Credentials，点击“Add”->jenkins, 在Kind中选择“SSH Username with private key”, Username 选择服务器主机用户，例如:root, Private Key 选择　Enter directly,将你服务器的ssh私钥复制过来，然后保存，这样在Credentials中选择该用户就可以了。
 
 
 ![](http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_126.png)
@@ -145,7 +145,7 @@ tip:如果在下载插件中出现了失败，也可以点到插件详情里，�
 ![](http://7xrrm5.com1.z0.glb.clouddn.com/Selection_127.png)
 
 
-3. 构建
+- 构建
 
 “添加构建步骤”　-> "invoke Gradle script" -> "invoke Gradle" 选择我们在全局工具配置中配置的gradle版本
 
@@ -155,7 +155,8 @@ Tasks配置任务
 ![](http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_128.png)
 
 
-4. 构建后操作
+
+- 构建后操作
 
 获取构建成功后的apk文件，然后发送邮件给相关人员
 
@@ -165,7 +166,7 @@ Tasks配置任务
 
 
 
-5. 点击立即构建，如果没问题的话一会就有构建成功的提示。
+- 点击立即构建，如果没问题的话一会就有构建成功的提示。
 
 
 

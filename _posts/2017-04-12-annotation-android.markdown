@@ -10,11 +10,11 @@ tags:
 ---
 
 
-前言
+## 前言
 
 Android 现在的开源库中大量的使用了注解，无论是运行时注解，还是编译时注解或者是标准的注解都被广泛的使用著名的使用注解的Andorid库有，Retrofit, BufferKnife,Dagger2等。
 
-注解的定义
+#### 注解的定义
 
 注解是Java中的一个特性，它是在源代码中插入标签，这些标签在之后的编译和运行中起到某种作用，注解的定义需要注解接口@interface创建，接口的方法对应着注解的元素。我们用一个简单例子，看看一个注解是怎么声明的：
 
@@ -25,41 +25,47 @@ public @interface Bind {
 }
 @interface 声明会创建一个实际的Java接口，与其他接口一样，注解也将会编译成.class文件。注解接口中的元素声明实际上是方法声明，注解接口中的方法没有参数，没有throws语句，也不能使用泛型。
 
-标准注解
+#### 标准注解
 
 Java API中默认定义的注解我们称之为标准注解。它们定义在java.lang、java.lang.annotation和javax.annotation包中。按照使用场景不同，可以分为如下3类。
 
-编译相关注解
+#### 编译相关注解
 
 编译相关注解是给编译器使用的，有以下几种。
 
-@Override: 编译器会检查被注解的方法是否真的重载了一个来自父类的方法，如果没有，编译器会给出错误的提示。
-@Deprecated:用来修饰任何不再鼓励使用或已经弃用的属性和方法等。
-@Suppress Warning:用于除了包之外的其他声明项中，用来抑制某种类型的警告。
-元注解
+- @Override: 编译器会检查被注解的方法是否真的重载了一个来自父类的方法，如果没有，编译器会给出错误的提示。
+- @Deprecated:用来修饰任何不再鼓励使用或已经弃用的属性和方法等。
+- @Suppress Warning:用于除了包之外的其他声明项中，用来抑制某种类型的警告。
+
+#### 元注解
 
 元注解，顾名思义，就是用来定义和实现注解的注解，总用有如下五种：
 
-@Target:这个注解的取值是一个ElementType类型的数组，用来指定注解所使用的对象范围，总共有十种不同的类型:
+- @Target:这个注解的取值是一个ElementType类型的数组，用来指定注解所使用的对象范围，总共有十种不同的类型:
 元素类型	适用于
-ANNOTATION_TYPE	注解类型声明
-CONSTRUCTOR	构造函数
-FIELD	实例变量
-LOCAL_VARIABLE	局部变量
-METHOD	方法
-PACKAGE	包
-PARAMETER	方法参数或构造函数的参数
-TYPE	类（包含enum）和接口(包含注解类型)
-TYPE_PARAMETER	类型参数
-TYPE_USE	类型的用途
-@Retention: 用来注明注解的访问范围，也就是在什么级别保留注解，有下面三种选择
-@Retention(RetentionPolicy.SOURCE) ,源码级注解，该类型的注解只会保留在.java源码里，源码编译后，注解的信息会被丢弃，不会保留在.class文件中。
-@Retention(RetentionPolicy.CLASS), 编译时注解，该类型的注解会被保留在.java和.class中，在执行的过程中会被Java虚拟机丢弃，不会加载到虚拟机中。
-@Retention(RetentionPolicy.RUNTIME),运行时注解，java虚拟机在运行时也会保留的注解，可以通过反射机制读取注解的信息(.java源码、.class文件和执行的时候都有注解信息)
+ - ANNOTATION_TYPE	注解类型声明
+ - CONSTRUCTOR	构造函数
+ - FIELD	实例变量
+ - LOCAL_VARIABLE	局部变量
+ - METHOD	方法
+ - PACKAGE	包
+ - PARAMETER	方法参数或构造函数的参数
+ - TYPE	类（包含enum）和接口(包含注解类型)
+ - TYPE_PARAMETER	类型参数
+ - TYPE_USE	类型的用途
+
+- @Retention: 用来注明注解的访问范围，也就是在什么级别保留注解，有下面三种选择
+
+ - @Retention(RetentionPolicy.SOURCE) ,源码级注解，该类型的注解只会保留在.java源码里，源码编译后，注解的信息会被丢弃，不会保留在.class文件中。
+ - @Retention(RetentionPolicy.CLASS), 编译时注解，该类型的注解会被保留在.java和.class中，在执行的过程中会被Java虚拟机丢弃，不会加载到虚拟机中。
+ - @Retention(RetentionPolicy.RUNTIME),运行时注解，java虚拟机在运行时也会保留的注解，可以通过反射机制读取注解的信息(.java源码、.class文件和执行的时候都有注解信息)
 未指定类型时，默认是CLASS类型
-@Documented : 表示被修饰的注解应该被包含在被注解项的文档中
-@Inherited : 表示该注解是可以被子类继承的。
-运行时注解
+
+- @Documented : 表示被修饰的注解应该被包含在被注解项的文档中
+
+- @Inherited : 表示该注解是可以被子类继承的。
+
+#### 运行时注解
 
 运行时注解相对比较简单，一般和反射机制配合使用，相比编译时注解性能较低，但灵活性好，实现起来比较简单,可以参考其他文档。
 
@@ -193,7 +199,7 @@ public class ViewInjectProcessor extends AbstractProcessor {
 
 ```
 
-注册注解处理器
+#### 注册注解处理器
 
 注解处理器定义好之后，为了让javac -processor能够进行处理，我们需要把注解处理器打包到一个jar包中，同时，需要在jar文件中添加一个名为javax.annotation.processing.Processor的文件，这个文件在/META-INF/services目录中。javax.annotation.processing.Processor文件中内容是注解处理器的全路径名，如果存在多个注解处理器，以换行进行分割。
 
@@ -240,6 +246,6 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 ```
 
-总结
+## 总结
 
 现在Android许多的开源库中都使用了注解，特别是编译时注解，如果使用的恰当不仅使的api的调用更简单，有些情况会显著的提高应用的性能，具体可以参考ARouter这个项目。

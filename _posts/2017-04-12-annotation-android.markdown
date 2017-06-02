@@ -55,7 +55,7 @@ TYPE_USE	类型的用途
 @Retention: 用来注明注解的访问范围，也就是在什么级别保留注解，有下面三种选择
 @Retention(RetentionPolicy.SOURCE) ,源码级注解，该类型的注解只会保留在.java源码里，源码编译后，注解的信息会被丢弃，不会保留在.class文件中。
 @Retention(RetentionPolicy.CLASS), 编译时注解，该类型的注解会被保留在.java和.class中，在执行的过程中会被Java虚拟机丢弃，不会加载到虚拟机中。
-@Retention(RetentionPolicy.RUNTIME),运行时注解，java虚拟机在运行时也会保留的注解，可以通过反射机制读取注解的信息(.java源码、.class文件和执行的时候都有注解信息) 
+@Retention(RetentionPolicy.RUNTIME),运行时注解，java虚拟机在运行时也会保留的注解，可以通过反射机制读取注解的信息(.java源码、.class文件和执行的时候都有注解信息)
 未指定类型时，默认是CLASS类型
 @Documented : 表示被修饰的注解应该被包含在被注解项的文档中
 @Inherited : 表示该注解是可以被子类继承的。
@@ -70,6 +70,8 @@ TYPE_USE	类型的用途
 定义注解处理器
 
 在编译期间，编译器会定位到Java源文件的注解，注解处理器会对它感兴趣的注解进行处理。需要注意的是，一个处理器只能生成新的源文件，而不能修改已经存在的文件。注解处理器一般需要继承AbstractProcessor类并实现process方法，同时需要指定这个处理器能够支持的java版本语句如下：
+
+```
 
 /**
  * Created by cfp on 17-3-29.
@@ -169,6 +171,8 @@ public class ViewInjectProcessor extends AbstractProcessor {
         processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message, element);
     }
 }
+
+```
 下面就以ViewInjectProcessor为例，介绍一下注解处理器中各个方法的意义。
 
 void init(ProcessingEnvironment processingEnv):初始化方法被注解处理工具调用，并传入ProcessingEnvironment类型的参数，这个参数提供了很多的工具，如Elements、Messager、Filter等
@@ -177,6 +181,8 @@ getSupportedSourceVersion() 指定注解处理器使用的Java版本,通常返�
 process(Set annotations, RoundEnvironment roundEnv) 这个方法中实现了注解处理器的具体业务逻辑，根据输入的参数roundEnv可以得到包含特定注解的被注解元素，然后可以编写处理注解的代码和生成Java源码文件的代码等等。
 在Java7中可以使用注解来代替上面的getSupportedAnnotationTypes()方法和getSupportedSourceVersion()，如下所示：
 
+```
+
 /**
  * Created by cfp on 17-3-29.
  */
@@ -184,6 +190,9 @@ process(Set annotations, RoundEnvironment roundEnv) 这个方法中实现了注�
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 @AutoService(Process.class)
 public class ViewInjectProcessor extends AbstractProcessor {
+
+```
+
 注册注解处理器
 
 注解处理器定义好之后，为了让javac -processor能够进行处理，我们需要把注解处理器打包到一个jar包中，同时，需要在jar文件中添加一个名为javax.annotation.processing.Processor的文件，这个文件在/META-INF/services目录中。javax.annotation.processing.Processor文件中内容是注解处理器的全路径名，如果存在多个注解处理器，以换行进行分割。
@@ -202,19 +211,35 @@ compile '依赖'
 
 只在编译期间引入注解所在函数库的依赖，不会打包到最终的apk包中。
 为注解处理器生成的源代码设置好路径，以便android studio能够正确找到。
-android-apt的使用比较简单 
+android-apt的使用比较简单
 在使用到注解处理器函数库的模块中引入插件
 
+```
+
 apply plugin: 'com.neenbedankt.android-apt'
+
+
+```
+
 然后在根目录的build.gradle添加
+
+```
 
  dependencies {
                classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
-最后 
+
+```
+最后
 在dependencies中就可以添加依赖
 
+```
+
  apt project(':viewinject-compiler')
+
+
+```
+
 总结
 
 现在Android许多的开源库中都使用了注解，特别是编译时注解，如果使用的恰当不仅使的api的调用更简单，有些情况会显著的提高应用的性能，具体可以参考ARouter这个项目。

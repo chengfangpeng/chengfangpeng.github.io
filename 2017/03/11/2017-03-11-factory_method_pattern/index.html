@@ -5,14 +5,24 @@
   
 
   
-  <title>Hexo</title>
+  <title>工厂模式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="理财产品的创建开篇先介绍一下我们公司的业务，我们公司是一家金融理财公司。在公司的业务中有很多打包好的理财产品，种类繁多。它们既有很多相似的特征，也有一些区别。不久前，公司的ceo觉得我们的这些理财产品的名称，以及里面包含的专业术语，对于普通的用户理解起来有很大的困难。于是乎，需求出来了，将所有之前的理财产品名称和一些描述，全部换掉。使用一些让用户户更容易理解的名称和描述。但是为了兼容旧的产品种类，">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工厂模式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;03&#x2F;11&#x2F;2017-03-11-factory_method_pattern&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="理财产品的创建开篇先介绍一下我们公司的业务，我们公司是一家金融理财公司。在公司的业务中有很多打包好的理财产品，种类繁多。它们既有很多相似的特征，也有一些区别。不久前，公司的ceo觉得我们的这些理财产品的名称，以及里面包含的专业术语，对于普通的用户理解起来有很大的困难。于是乎，需求出来了，将所有之前的理财产品名称和一些描述，全部换掉。使用一些让用户户更容易理解的名称和描述。但是为了兼容旧的产品种类，">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;design_pattern&#x2F;factory_method_practice.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;design_pattern&#x2F;factory_method_pattern.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;design_pattern&#x2F;simple_factory_practice.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;multiple_factory_method.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;singleton_factory_method.png">
+<meta property="og:updated_time" content="2019-10-27T02:24:58.266Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;design_pattern&#x2F;factory_method_practice.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,379 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/27/hello-world/" class="article-date">
-  <time datetime="2019-10-27T02:09:51.273Z" itemprop="datePublished">2019-10-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/27/hello-world/" data-id="ck28dh6nk001e5d9sgh5k4jgy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2019-03-01-SharePreferences源码解读" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/01/2019-03-01-SharePreferences%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="article-date">
-  <time datetime="2019-03-01T04:00:00.000Z" itemprop="datePublished">2019-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/01/2019-03-01-SharePreferences%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">SharePreferences源码解读</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="查看原文"><a href="#查看原文" class="headerlink" title="查看原文"></a><a href="https://github.com/chengfangpeng/Note/blob/master/2_cs/7_blog/SharePreferences%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md" target="_blank" rel="noopener">查看原文</a></h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/01/2019-03-01-SharePreferences%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" data-id="ck28dh6nj001b5d9s23sxeg3k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2019-02-15-设计模式之代理模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/15/2019-02-15-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2019-02-15T04:00:00.000Z" itemprop="datePublished">2019-02-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/15/2019-02-15-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">设计模式之代理模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="查看原文"><a href="#查看原文" class="headerlink" title="查看原文"></a><a href="https://github.com/chengfangpeng/Note/blob/master/2_cs/7_blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F.md" target="_blank" rel="noopener">查看原文</a></h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/2019-02-15-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" data-id="ck28dh6ni00195d9sasiygrho" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2019-01-30-recyclerview局部刷新和diff算法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/30/2019-01-30-recyclerview%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E5%92%8Cdiff%E7%AE%97%E6%B3%95/" class="article-date">
-  <time datetime="2019-01-30T04:00:00.000Z" itemprop="datePublished">2019-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/30/2019-01-30-recyclerview%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E5%92%8Cdiff%E7%AE%97%E6%B3%95/">RecyclerView局部刷新和Diff算法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="查看原文"><a href="#查看原文" class="headerlink" title="查看原文"></a><a href="https://github.com/chengfangpeng/Note/blob/master/2_cs/7_blog/RecyclerView局部刷新和Diff算法.md" target="_blank" rel="noopener">查看原文</a></h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/30/2019-01-30-recyclerview%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E5%92%8Cdiff%E7%AE%97%E6%B3%95/" data-id="ck28dh6nh00175d9s0mjr4vps" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2017-06-09-django_install" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/09/2017-06-09-django_install/" class="article-date">
-  <time datetime="2017-06-09T04:00:00.000Z" itemprop="datePublished">2017-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/2017-06-09-django_install/">Django环境配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近写android写的有点烦了．想搞点服务端的东西，刚开始考虑使用java的，但是java web学起来太麻烦了，而且也不怎么适合练手．正好之前学了些python的语法，而且最近python真的很火，什么大数据，机器学习，人工智能，到现在搞不清，机器学习和人工智能的区别．python有个很火的web框架Django.貌似用的人比较多（有利于收集学习资料），好，就拿你开刀了！</p>
-<h2 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h2><p>我用的系统是ubuntu，下面所有的操作默认都是在ubuntu下完成的．</p>
-<p>使用python的依赖管理工具pip安装，命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install Django</span><br></pre></td></tr></table></figure>
-<p>检查一下下是否安装完成:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import django</span><br><span class="line">&gt;&gt;&gt; django.VERSION</span><br><span class="line">(1, 9, 6, &apos;final&apos;, 0)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="搭建多个独立的开发环境"><a href="#搭建多个独立的开发环境" class="headerlink" title="搭建多个独立的开发环境"></a>搭建多个独立的开发环境</h2><p>有些时候我们有多个不同的项目，并且每个项目使用的django版本是不一样的,那咋办，这不是坑爹吗，难道需要我们每打开一个项目，就重新安装卸载一次django.这是不可能的，程序猿哪有这么傻．那我们该咋办了．答案是使用virtualenv来管理多个开发环境．同时安装virtualenvwrapper，virtualenvwrapper是virtualenv的封装，可以方便的创建/删除/拷贝/切换不通的环境．<br>安装virtualenv和virtualenvwrapper</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install virtualenv</span><br><span class="line">sudo pip install virtualenvwrapper</span><br></pre></td></tr></table></figure>
-<p>修改~/.bash_profile或其它环境变量相关文件(如 .bashrc 或用 ZSH 之后的 .zshrc)，添加以下语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">export PROJECT_HOME=$HOME/workspace</span><br><span class="line">source /usr/local/bin/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
-
-<p>使用方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv env 创建虚拟环境</span><br><span class="line">workon　env　切换到env</span><br><span class="line">deactivate 退出终端环境</span><br></pre></td></tr></table></figure>
-<p>还有其他的一些方法，有兴趣的可以自己去找．如果使用了ide PyCharm的话创建和使用VirtualEnv就更方便了．创建和查看VirtualEnv可以在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File &gt; Settings &gt; Project Interpreter</span><br></pre></td></tr></table></figure>
-
-<p>中设置</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Django环境的配置就介绍到这里，接下来，就到Django的内部去看看，它到底该咋用．</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/09/2017-06-09-django_install/" data-id="ck28dh6ng00145d9saoyy3r6p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-Django/" rel="tag">Python Django</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2017-04-12-static-field" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/12/2017-04-12-static-field/" class="article-date">
-  <time datetime="2017-04-12T04:00:00.000Z" itemprop="datePublished">2017-04-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/2017-04-12-static-field/">Android开发使用枚举</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用静态常量代替枚举"><a href="#用静态常量代替枚举" class="headerlink" title="用静态常量代替枚举"></a>用静态常量代替枚举</h2><p>在Android的官方文档中，关于枚举的使用，给出的建议是枚举占用的内存是静态常量的两倍，所以建议不要在android中使用枚举。但是枚举有个很重要的优点就是，提供了类型的安全。那么使用静态常量怎么能保障类型的安全呢。使用@IntDef和@StringDef,用来提供编译期的类型检查，使用很简单</p>
-<p>以IntDef为例</p>
-<p>首先引入依赖:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">compile &apos;com.android.support:support-annotations:22.0.0&apos;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>具体的使用代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    /** 成功*/</span><br><span class="line"></span><br><span class="line">    private static final int SUCCESS = 1;</span><br><span class="line"></span><br><span class="line">    /** 失败*/</span><br><span class="line"></span><br><span class="line">    private static final int FAIL = 2;</span><br><span class="line"></span><br><span class="line">    /** 处理中*/</span><br><span class="line"></span><br><span class="line">    private static final int DEALING = 3;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @IntDef(&#123;SUCCESS, FAIL, DEALING&#125;)</span><br><span class="line"></span><br><span class="line">    @Retention(RetentionPolicy.SOURCE)</span><br><span class="line"></span><br><span class="line">    public @interface State&#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @State</span><br><span class="line"></span><br><span class="line">    private int mState;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line"></span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line"></span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样在事例中给mState变量赋值时就只能限制在我们给出的静态常量了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/12/2017-04-12-static-field/" data-id="ck28dh6nf00105d9s7gsua44z" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2017-04-12-annotation-android" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/11/2017-04-12-annotation-android/" class="article-date">
-  <time datetime="2017-04-11T04:00:00.000Z" itemprop="datePublished">2017-04-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/2017-04-12-annotation-android/">Android自定义编译时注解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Android 现在的开源库中大量的使用了注解，无论是运行时注解，还是编译时注解或者是标准的注解都被广泛的使用著名的使用注解的Andorid库有，Retrofit, BufferKnife,Dagger2等。</p>
-<h4 id="注解的定义"><a href="#注解的定义" class="headerlink" title="注解的定义"></a>注解的定义</h4><p>注解是Java中的一个特性，它是在源代码中插入标签，这些标签在之后的编译和运行中起到某种作用，注解的定义需要注解接口@interface创建，接口的方法对应着注解的元素。我们用一个简单例子，看看一个注解是怎么声明的：</p>
-<p>@Retention(RetentionPolicy.CLASS)<br>@Target(ElementType.FIELD)<br>public @interface Bind {<br>    int value();<br>}<br>@interface 声明会创建一个实际的Java接口，与其他接口一样，注解也将会编译成.class文件。注解接口中的元素声明实际上是方法声明，注解接口中的方法没有参数，没有throws语句，也不能使用泛型。</p>
-<h4 id="标准注解"><a href="#标准注解" class="headerlink" title="标准注解"></a>标准注解</h4><p>Java API中默认定义的注解我们称之为标准注解。它们定义在java.lang、java.lang.annotation和javax.annotation包中。按照使用场景不同，可以分为如下3类。</p>
-<h4 id="编译相关注解"><a href="#编译相关注解" class="headerlink" title="编译相关注解"></a>编译相关注解</h4><p>编译相关注解是给编译器使用的，有以下几种。</p>
-<ul>
-<li>@Override: 编译器会检查被注解的方法是否真的重载了一个来自父类的方法，如果没有，编译器会给出错误的提示。</li>
-<li>@Deprecated:用来修饰任何不再鼓励使用或已经弃用的属性和方法等。</li>
-<li>@Suppress Warning:用于除了包之外的其他声明项中，用来抑制某种类型的警告。</li>
-</ul>
-<h4 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h4><p>元注解，顾名思义，就是用来定义和实现注解的注解，总用有如下五种：</p>
-<ul>
-<li><p>@Target:这个注解的取值是一个ElementType类型的数组，用来指定注解所使用的对象范围，总共有十种不同的类型:<br>元素类型    适用于</p>
-<ul>
-<li>ANNOTATION_TYPE    注解类型声明</li>
-<li>CONSTRUCTOR    构造函数</li>
-<li>FIELD    实例变量</li>
-<li>LOCAL_VARIABLE    局部变量</li>
-<li>METHOD    方法</li>
-<li>PACKAGE    包</li>
-<li>PARAMETER    方法参数或构造函数的参数</li>
-<li>TYPE    类（包含enum）和接口(包含注解类型)</li>
-<li>TYPE_PARAMETER    类型参数</li>
-<li>TYPE_USE    类型的用途</li>
-</ul>
-</li>
-<li><p>@Retention: 用来注明注解的访问范围，也就是在什么级别保留注解，有下面三种选择</p>
-<ul>
-<li>@Retention(RetentionPolicy.SOURCE) ,源码级注解，该类型的注解只会保留在.java源码里，源码编译后，注解的信息会被丢弃，不会保留在.class文件中。</li>
-<li>@Retention(RetentionPolicy.CLASS), 编译时注解，该类型的注解会被保留在.java和.class中，在执行的过程中会被Java虚拟机丢弃，不会加载到虚拟机中。</li>
-<li>@Retention(RetentionPolicy.RUNTIME),运行时注解，java虚拟机在运行时也会保留的注解，可以通过反射机制读取注解的信息(.java源码、.class文件和执行的时候都有注解信息)<br>未指定类型时，默认是CLASS类型</li>
-</ul>
-</li>
-<li><p>@Documented : 表示被修饰的注解应该被包含在被注解项的文档中</p>
-</li>
-<li><p>@Inherited : 表示该注解是可以被子类继承的。</p>
-</li>
-</ul>
-<h4 id="运行时注解"><a href="#运行时注解" class="headerlink" title="运行时注解"></a>运行时注解</h4><p>运行时注解相对比较简单，一般和反射机制配合使用，相比编译时注解性能较低，但灵活性好，实现起来比较简单,可以参考其他文档。</p>
-<p>编译时注解</p>
-<p>编译时注解能够自动处理Java源文件并生成更多的源码、配置文件、脚本或其他可能想要生成的东西。这些操作都是通过注解处理器生成的。Java编译器集成了注解处理，通过在编译期调用javac -processor命令可以调起注解处理器，他能够允许我们实现编译时注解的功能。</p>
-<p>定义注解处理器</p>
-<p>在编译期间，编译器会定位到Java源文件的注解，注解处理器会对它感兴趣的注解进行处理。需要注意的是，一个处理器只能生成新的源文件，而不能修改已经存在的文件。注解处理器一般需要继承AbstractProcessor类并实现process方法，同时需要指定这个处理器能够支持的java版本语句如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by cfp on 17-3-29.</span><br><span class="line"> */</span><br><span class="line">@AutoService(Process.class)</span><br><span class="line">public class ViewInjectProcessor extends AbstractProcessor &#123;</span><br><span class="line">    private Messager mMessager;</span><br><span class="line">    private Elements mElementUtils;</span><br><span class="line">    private Filer mFiler;</span><br><span class="line">    private Map&lt;String, ProxyInfo&gt; mProxyMap = new HashMap&lt;String, ProxyInfo&gt;();</span><br><span class="line">    @Override</span><br><span class="line">    public synchronized void init(ProcessingEnvironment processingEnv)</span><br><span class="line">    &#123;</span><br><span class="line">        super.init(processingEnv);</span><br><span class="line">        mMessager = processingEnv.getMessager();</span><br><span class="line">        mMessager.printMessage(Diagnostic.Kind.NOTE , &quot;init..............................&quot;);</span><br><span class="line">        mFiler = processingEnv.getFiler();</span><br><span class="line">        mElementUtils = processingEnv.getElementUtils();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Set&lt;String&gt; getSupportedAnnotationTypes()</span><br><span class="line">    &#123;</span><br><span class="line">        HashSet&lt;String&gt; supportTypes = new LinkedHashSet&lt;&gt;();</span><br><span class="line">        supportTypes.add(Bind.class.getCanonicalName());</span><br><span class="line">        return supportTypes;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public SourceVersion getSupportedSourceVersion()</span><br><span class="line">    &#123;</span><br><span class="line">        return SourceVersion.latestSupported();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean process(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv)</span><br><span class="line">    &#123;</span><br><span class="line">        mMessager.printMessage(Diagnostic.Kind.NOTE , &quot;process..............................&quot;);</span><br><span class="line">        mProxyMap.clear();</span><br><span class="line">        Set&lt;? extends Element&gt; elesWithBind = roundEnv.getElementsAnnotatedWith(Bind.class);</span><br><span class="line">        for (Element element : elesWithBind)</span><br><span class="line">        &#123;</span><br><span class="line">            checkAnnotationValid(element, Bind.class);</span><br><span class="line">            VariableElement variableElement = (VariableElement) element;</span><br><span class="line">            //class type</span><br><span class="line">            TypeElement classElement = (TypeElement) variableElement.getEnclosingElement();</span><br><span class="line">            //full class name</span><br><span class="line">            String fqClassName = classElement.getQualifiedName().toString();</span><br><span class="line">            ProxyInfo proxyInfo = mProxyMap.get(fqClassName);</span><br><span class="line">            if (proxyInfo == null)</span><br><span class="line">            &#123;</span><br><span class="line">                proxyInfo = new ProxyInfo(mElementUtils, classElement);</span><br><span class="line">                mProxyMap.put(fqClassName, proxyInfo);</span><br><span class="line">            &#125;</span><br><span class="line">            Bind bindAnnotation = variableElement.getAnnotation(Bind.class);</span><br><span class="line">            int id = bindAnnotation.value();</span><br><span class="line">            proxyInfo.injectVariables.put(id , variableElement);</span><br><span class="line">        &#125;</span><br><span class="line">        for (String key : mProxyMap.keySet())</span><br><span class="line">        &#123;</span><br><span class="line">            ProxyInfo proxyInfo = mProxyMap.get(key);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                JavaFileObject jfo = mFiler.createSourceFile(</span><br><span class="line">                        proxyInfo.getProxyClassFullName(),</span><br><span class="line">                        proxyInfo.getTypeElement());</span><br><span class="line">                Writer writer = jfo.openWriter();</span><br><span class="line">                writer.write(proxyInfo.generateJavaCode());</span><br><span class="line">                writer.flush();</span><br><span class="line">                writer.close();</span><br><span class="line">            &#125; catch (IOException e)</span><br><span class="line">            &#123;</span><br><span class="line">                error(proxyInfo.getTypeElement(),</span><br><span class="line">                        &quot;Unable to write injector for type %s: %s&quot;,</span><br><span class="line">                        proxyInfo.getTypeElement(), e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean checkAnnotationValid(Element annotatedElement, Class clazz)</span><br><span class="line">    &#123;</span><br><span class="line">        if (annotatedElement.getKind() != ElementKind.FIELD)</span><br><span class="line">        &#123;</span><br><span class="line">            error(annotatedElement, &quot;%s must be declared on field.&quot;, clazz.getSimpleName());</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (ClassValidator.isPrivate(annotatedElement))</span><br><span class="line">        &#123;</span><br><span class="line">            error(annotatedElement, &quot;%s() must can not be private.&quot;, annotatedElement.getSimpleName());</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    private void error(Element element, String message, Object... args)</span><br><span class="line">    &#123;</span><br><span class="line">        if (args.length &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            message = String.format(message, args);</span><br><span class="line">        &#125;</span><br><span class="line">        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message, element);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下面就以ViewInjectProcessor为例，介绍一下注解处理器中各个方法的意义。</p>
-<p>void init(ProcessingEnvironment processingEnv):初始化方法被注解处理工具调用，并传入ProcessingEnvironment类型的参数，这个参数提供了很多的工具，如Elements、Messager、Filter等<br>getSupportedAnnotationTypes() 指定这个注解处理器能够处理的注解类型，返回一个注解类型的集合<br>getSupportedSourceVersion() 指定注解处理器使用的Java版本,通常返回 SourceVersion.latestSupported()即可。<br>process(Set annotations, RoundEnvironment roundEnv) 这个方法中实现了注解处理器的具体业务逻辑，根据输入的参数roundEnv可以得到包含特定注解的被注解元素，然后可以编写处理注解的代码和生成Java源码文件的代码等等。<br>在Java7中可以使用注解来代替上面的getSupportedAnnotationTypes()方法和getSupportedSourceVersion()，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by cfp on 17-3-29.</span><br><span class="line"> */</span><br><span class="line">@SupportedAnnotationTypes(&#123;&#125;)</span><br><span class="line">@SupportedSourceVersion(SourceVersion.RELEASE_7)</span><br><span class="line">@AutoService(Process.class)</span><br><span class="line">public class ViewInjectProcessor extends AbstractProcessor &#123;</span><br></pre></td></tr></table></figure>
-
-<h4 id="注册注解处理器"><a href="#注册注解处理器" class="headerlink" title="注册注解处理器"></a>注册注解处理器</h4><p>注解处理器定义好之后，为了让javac -processor能够进行处理，我们需要把注解处理器打包到一个jar包中，同时，需要在jar文件中添加一个名为javax.annotation.processing.Processor的文件，这个文件在/META-INF/services目录中。javax.annotation.processing.Processor文件中内容是注解处理器的全路径名，如果存在多个注解处理器，以换行进行分割。</p>
-<p>另外这个编译的module需要是一个Java Library而不能是Android Library，因为AbsProcessor这个类是在Javax中的，不包含在Android Library的JDK中。</p>
-<p>手动执行上面的注册过程其实是很麻烦的，因此google开源了一个库AutoService可以帮我们自动的注册只需要添加@AutoService(Process.class)即可。</p>
-<p>android-apt插件</p>
-<p>注解处理器所在的jar文件只是在编译的时候起作用，在应用运行的时候就没什么用了，因此在build.gradle中引入依赖时应该以provided方式而不是compile方式引入</p>
-<p>provided ‘依赖’<br>compile ‘依赖’<br>当然，我们可以用另外一种方法，就是使用android-apt插件的方式。它是android-studio中使用的一个处理注解的一个插件，它的作用如下:</p>
-<p>只在编译期间引入注解所在函数库的依赖，不会打包到最终的apk包中。<br>为注解处理器生成的源代码设置好路径，以便android studio能够正确找到。<br>android-apt的使用比较简单<br>在使用到注解处理器函数库的模块中引入插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;</span><br></pre></td></tr></table></figure>
-
-<p>然后在根目录的build.gradle添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">              classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>最后<br>在dependencies中就可以添加依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apt project(&apos;:viewinject-compiler&apos;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在Android许多的开源库中都使用了注解，特别是编译时注解，如果使用的恰当不仅使的api的调用更简单，有些情况会显著的提高应用的性能，具体可以参考ARouter这个项目。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/11/2017-04-12-annotation-android/" data-id="ck28dh6ne000y5d9sgtprc6pc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2017-03-11-factory_method_pattern" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-03-11-factory_method_pattern" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/11/2017-03-11-factory_method_pattern/" class="article-date">
   <time datetime="2017-03-11T04:00:00.000Z" itemprop="datePublished">2017-03-11</time>
@@ -444,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/11/2017-03-11-factory_method_pattern/">工厂模式</a>
+    <h1 class="article-title" itemprop="name">
+      工厂模式
     </h1>
   
 
@@ -611,186 +249,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-2017-03-10-https-prevent-capture" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/01/2017-03-10-https-prevent-capture/" class="article-date">
-  <time datetime="2017-03-01T04:00:00.000Z" itemprop="datePublished">2017-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/11/2017-04-12-annotation-android/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/01/2017-03-10-https-prevent-capture/">Android防止抓包</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://www.cnblogs.com/guogangj/p/4118605.html" target="_blank" rel="noopener">1.证书相关玩意</a></p>
-<p><a href="https://developer.android.com/training/articles/security-config.html?hl=zh-cn#CleartextTrafficPermitted" target="_blank" rel="noopener">2.android网络安全配置</a></p>
-<p><a href="http://frank-zhu.github.io/android/2014/12/26/android-https-ssl/" target="_blank" rel="noopener">3.Android HTTPS SSL双向验证</a></p>
-<p><a href="http://linghaolu.github.io/android-n/2016/03/25/android-n-https.html" target="_blank" rel="noopener">4.Android N HTTPS</a></p>
-<p><a href="http://www.aneasystone.com/archives/2016/04/java-and-https.html" target="_blank" rel="noopener">5.Java和HTTP的那些事 HTTPS和证书</a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>现在大量的app的api都采用了https传输协议，但是只采用https也不能完全的保障数据的安全，比如使用Fiddler，charles等工具,很容易可以进行中间人攻击，Android N （sdk &gt; =24）在Https的安全性，防止中间人攻击做了加强.</p>
-<p>主要的功能如下：</p>
-<ul>
-<li><p>自定义信任锚：针对应用的安全连接自定义哪些证书颁发机构 (CA) 值得信任。例如，信任特定的自签署证书或限制应用信任的公共 CA 集。</p>
-</li>
-<li><p>仅调试重写：在应用中以安全方式调试安全连接，而不会增加已安装用户的风险。</p>
-</li>
-<li><p>明文通信选择退出：防止应用意外使用明文通信。</p>
-</li>
-<li><p>证书固定：将应用的安全连接限制为特定的证书。</p>
-</li>
-</ul>
-<p>其中第四条就可以在一定的程度上防止中间人攻击，比如防止Fiddler，charles通过导入自己的证书而进行抓包。具体的配置可以看上面的[参考2].但是对于sdk&lt;24的版本怎么办呢,我可以在代码中固定证书。</p>
-<h2 id="android-async-http设置自定义证书"><a href="#android-async-http设置自定义证书" class="headerlink" title="android-async-http设置自定义证书"></a>android-async-http设置自定义证书</h2><p>下面以<a href="https://github.com/loopj/android-async-http" target="_blank" rel="noopener">android-async-http</a> 为例，介绍一下给AsyncHttpClient设置自定义证书验证。直接上代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/** 协议*/</span><br><span class="line"></span><br><span class="line">    private static final String X509 = &quot;X.509&quot;;</span><br><span class="line"></span><br><span class="line">    /** 证书类型*/</span><br><span class="line"></span><br><span class="line">    private static final String PKCS12 = &quot;PKCS12&quot;;</span><br><span class="line"></span><br><span class="line">    private static final String BC = &quot;BC&quot;;</span><br><span class="line"></span><br><span class="line">    private static final String TRUST = &quot;trust&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> /**</span><br><span class="line"></span><br><span class="line">     * 获取固定签名的httpclient</span><br><span class="line"></span><br><span class="line">     * @return</span><br><span class="line"></span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    private static AsyncHttpClient getCustomHttpsClient()&#123;</span><br><span class="line"></span><br><span class="line">        InputStream ins = null;</span><br><span class="line"></span><br><span class="line">        String result = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">        AsyncHttpClient asyncHttpClient = null;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line"></span><br><span class="line">            ins = WCGApplicationLike.getInstance().getApplication().getApplicationContext().getResources().openRawResource(R.raw.app);</span><br><span class="line"></span><br><span class="line">            CertificateFactory cerFactory = CertificateFactory</span><br><span class="line"></span><br><span class="line">                    .getInstance(X509);</span><br><span class="line"></span><br><span class="line">            Certificate cer = cerFactory.generateCertificate(ins);</span><br><span class="line"></span><br><span class="line">            KeyStore keyStore = KeyStore.getInstance(PKCS12, BC);</span><br><span class="line"></span><br><span class="line">            keyStore.load(null, null);</span><br><span class="line"></span><br><span class="line">            keyStore.setCertificateEntry(TRUST, cer);</span><br><span class="line"></span><br><span class="line">            org.apache.http.conn.ssl.SSLSocketFactory ssl = new org.apache.http.conn.ssl.SSLSocketFactory(keyStore);</span><br><span class="line"></span><br><span class="line">            ssl.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);//记得设置主机为严格认证，这样才会起作用，证书不对时会直接返回请求失败</span><br><span class="line"></span><br><span class="line">            SchemeRegistry schReg = new SchemeRegistry();</span><br><span class="line"></span><br><span class="line">            schReg.register(new Scheme(&quot;http&quot;, ssl, 80));</span><br><span class="line"></span><br><span class="line">            schReg.register(new Scheme(&quot;https&quot;, ssl, 443));</span><br><span class="line"></span><br><span class="line">            asyncHttpClient = new AsyncHttpClient(schReg);</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line"></span><br><span class="line">            asyncHttpClient = new AsyncHttpClient(true,80,443);</span><br><span class="line"></span><br><span class="line">        &#125;finally &#123;</span><br><span class="line"></span><br><span class="line">            return asyncHttpClient;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/2017-03-10-https-prevent-capture/" data-id="ck28dh6ne000v5d9s68i14ry9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2017-02-14-jenkins-android-build" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/14/2017-02-14-jenkins-android-build/" class="article-date">
-  <time datetime="2017-02-14T04:00:00.000Z" itemprop="datePublished">2017-02-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          Android自定义编译时注解
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/14/2017-02-14-jenkins-android-build/">Jenkins＋Gradle搭建Android持续集成编译环境</a>
-    </h1>
   
+    <a href="/2017/03/01/2017-03-10-https-prevent-capture/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android防止抓包</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是持续集成"><a href="#什么是持续集成" class="headerlink" title="什么是持续集成"></a>什么是持续集成</h2><p>持续集成是一种软件开发实践，即开发者多次的将代码集成到主干中，通过持续的编译，能够及时的发现代码库中存在的错误，并且支持测试和产品及时的取包进行测试。</p>
-<h2 id="集成条件"><a href="#集成条件" class="headerlink" title="集成条件"></a>集成条件</h2><ul>
-<li><p>一台持续集成服务器：这台服务器的任务是从代码托管服务器自动拉取最新的代码，并且进行代码的编译和打包输出app的安装包，同时发邮件提示团队的其他成员。一般情况下移动端产品都有Android和IOS两个平台，为了兼顾，会选择Max OSX系统。但本文介绍的话，选择了我自己用的Ubuntu系统，并且只搭建Android端的环境。</p>
-</li>
-<li><p>另外就是需要一个集成工具jenkins</p>
-</li>
-</ul>
-<h2 id="Jenkins的安装"><a href="#Jenkins的安装" class="headerlink" title="Jenkins的安装"></a>Jenkins的安装</h2><p>Jenkins的安装有两种方法</p>
-<ol>
-<li>在<a href="https://jenkins.io/" target="_blank" rel="noopener">Jenkins的官网</a>　下载最新的war包。直接在终端中执行下面的命令就可以了(前提安装了jdk并且配置了相关的环境变量)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cfp@cfp:~$ java -jar jenkins.war</span><br></pre></td></tr></table></figure>
-
-
-<p>这样Jenkins就启动了，war包中自带jetty服务器，安装现在就完成了。第一次启动Jenkins时，出于安全考虑，Jenkins会自动生成一个随机的按照口令。复制下来一会访问页面的时候需要验证。</p>
-<ol start="2">
-<li>通过tomcat部署jenkins,在Ubuntu上安装Tomcat也很简单，一行命令</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cfp@cfp:~$ sudo apt-get install tomcat7</span><br></pre></td></tr></table></figure>
-
-
-<p>安装成功tomcat后，将第一种方法下载的jenkins的war包放到tomcat的webapps目录下就可以了，具体的位置在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/var/lib/tomcat7/webapps</span><br></pre></td></tr></table></figure>
-
-
-<p>下面看看安装的成果：</p>
-<p>第一种方法访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http://localhost:8080/</span><br></pre></td></tr></table></figure>
-
-
-<p>第二种方法访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http://localhost:8080/jenkins/</span><br></pre></td></tr></table></figure>
-
-
-<p>在按提示验证过后即可打开jenkins的首页</p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_115.png" alt=""></p>
-<h2 id="Jenkins插件的安装"><a href="#Jenkins插件的安装" class="headerlink" title="Jenkins插件的安装"></a>Jenkins插件的安装</h2><p>Jenkins构建Android Studio工程需要安装下面的插件</p>
-<ul>
-<li><p>Gradle plugin: 支持执行gradle构建脚本</p>
-</li>
-<li><p>Git plugin: 代码仓库是基于git的话，用于支持Jenkins拉取远程代码。</p>
-</li>
-<li><p>SSH Credentials Plugin: SSH 证书插件，用于支持Jenkins支持本地存储SSH证书。</p>
-</li>
-</ul>
-<p>点击Jenkins的系统管理-&gt;插件管理-&gt;可选插件，里面可以搜到所需要的插件。</p>
-<p>tip:如果在下载插件中出现了失败，也可以点到插件详情里，手动的下载下来，然后在插件管理-&gt;高级中手动的安装。</p>
-<h2 id="Jenkins全局配置"><a href="#Jenkins全局配置" class="headerlink" title="Jenkins全局配置"></a>Jenkins全局配置</h2><p>点击Jenkins首页, 系统管理-&gt;全局工具配置，可以进入jenkins的全局配置页面。这个页面中进行jdk,git和gradle的配置</p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_123.png" alt=""></p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_124.png" alt=""></p>
-<h2 id="Android项目构建配置"><a href="#Android项目构建配置" class="headerlink" title="Android项目构建配置"></a>Android项目构建配置</h2><ul>
-<li><p>在Jenkins首页“新建”　－&gt; “构建一个自由风格的软件项目”并输入Item名称</p>
-</li>
-<li><p>这样在Jenkins首页就看到这个项目了，点击进入项目详情页，点击左侧的配置，我们用git仓库为例配置代码库，找到“源码管理”　-&gt;选择git,如果使用HTTP协议直接配置HTTP地址即可，如果使用了SSH方式访问git,需要配置Credentials，点击“Add”-&gt;jenkins, 在Kind中选择“SSH Username with private key”, Username 选择服务器主机用户，例如:root, Private Key 选择　Enter directly,将你服务器的ssh私钥复制过来，然后保存，这样在Credentials中选择该用户就可以了。</p>
-</li>
-</ul>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_126.png" alt=""></p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_125.png" alt=""></p>
-<p>接下来配置你构建的分支</p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com/Selection_127.png" alt=""></p>
-<ul>
-<li>构建</li>
-</ul>
-<p>“添加构建步骤”　-&gt; “invoke Gradle script” -&gt; “invoke Gradle” 选择我们在全局工具配置中配置的gradle版本</p>
-<p>Tasks配置任务</p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_128.png" alt=""></p>
-<ul>
-<li>构建后操作</li>
-</ul>
-<p>获取构建成功后的apk文件，然后发送邮件给相关人员</p>
-<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_129.png" alt=""></p>
-<ul>
-<li>点击立即构建，如果没问题的话一会就有构建成功的提示。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/2017-02-14-jenkins-android-build/" data-id="ck28dh6nd000t5d9s35u01tz6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         

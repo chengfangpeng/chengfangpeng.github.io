@@ -5,16 +5,17 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>Android开发使用枚举 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="用静态常量代替枚举在Android的官方文档中，关于枚举的使用，给出的建议是枚举占用的内存是静态常量的两倍，所以建议不要在android中使用枚举。但是枚举有个很重要的优点就是，提供了类型的安全。那么使用静态常量怎么能保障类型的安全呢。使用@IntDef和@StringDef,用来提供编译期的类型检查，使用很简单 以IntDef为例 首先引入依赖: 12compile &amp;apos;com.andr">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="Android开发使用枚举">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;04&#x2F;12&#x2F;2017-04-12-static-field&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="用静态常量代替枚举在Android的官方文档中，关于枚举的使用，给出的建议是枚举占用的内存是静态常量的两倍，所以建议不要在android中使用枚举。但是枚举有个很重要的优点就是，提供了类型的安全。那么使用静态常量怎么能保障类型的安全呢。使用@IntDef和@StringDef,用来提供编译期的类型检查，使用很简单 以IntDef为例 首先引入依赖: 12compile &amp;apos;com.andr">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-27T02:09:51.273Z">
+<meta property="og:updated_time" content="2019-10-27T02:24:58.266Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-04-12-static-field" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/27/hello-world/" class="article-date">
-  <time datetime="2019-10-27T02:09:51.273Z" itemprop="datePublished">2019-10-27</time>
+    <a href="/2017/04/12/2017-04-12-static-field/" class="article-date">
+  <time datetime="2017-04-12T04:00:00.000Z" itemprop="datePublished">2017-04-12</time>
 </a>
     
   </div>
@@ -76,7 +77,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Android开发使用枚举
     </h1>
   
 
@@ -84,36 +85,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="用静态常量代替枚举"><a href="#用静态常量代替枚举" class="headerlink" title="用静态常量代替枚举"></a>用静态常量代替枚举</h2><p>在Android的官方文档中，关于枚举的使用，给出的建议是枚举占用的内存是静态常量的两倍，所以建议不要在android中使用枚举。但是枚举有个很重要的优点就是，提供了类型的安全。那么使用静态常量怎么能保障类型的安全呢。使用@IntDef和@StringDef,用来提供编译期的类型检查，使用很简单</p>
+<p>以IntDef为例</p>
+<p>首先引入依赖:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">compile &apos;com.android.support:support-annotations:22.0.0&apos;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>具体的使用代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    /** 成功*/</span><br><span class="line"></span><br><span class="line">    private static final int SUCCESS = 1;</span><br><span class="line"></span><br><span class="line">    /** 失败*/</span><br><span class="line"></span><br><span class="line">    private static final int FAIL = 2;</span><br><span class="line"></span><br><span class="line">    /** 处理中*/</span><br><span class="line"></span><br><span class="line">    private static final int DEALING = 3;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @IntDef(&#123;SUCCESS, FAIL, DEALING&#125;)</span><br><span class="line"></span><br><span class="line">    @Retention(RetentionPolicy.SOURCE)</span><br><span class="line"></span><br><span class="line">    public @interface State&#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @State</span><br><span class="line"></span><br><span class="line">    private int mState;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line"></span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line"></span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>这样在事例中给mState变量赋值时就只能限制在我们给出的静态常量了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/27/hello-world/" data-id="ck28dh6nk001e5d9sgh5k4jgy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/12/2017-04-12-static-field/" data-id="ck28dh6nf00105d9s7gsua44z" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
+    <a href="/2017/06/09/2017-06-09-django_install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Django环境配置
+        
+      </div>
+    </a>
   
-    <a href="/2019/03/01/2019-03-01-SharePreferences%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2017/04/11/2017-04-12-annotation-android/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SharePreferences源码解读</div>
+      <div class="article-nav-title">Android自定义编译时注解</div>
     </a>
   
 </nav>

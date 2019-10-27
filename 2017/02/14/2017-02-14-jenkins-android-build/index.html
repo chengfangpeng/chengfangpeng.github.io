@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Jenkins＋Gradle搭建Android持续集成编译环境 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是持续集成持续集成是一种软件开发实践，即开发者多次的将代码集成到主干中，通过持续的编译，能够及时的发现代码库中存在的错误，并且支持测试和产品及时的取包进行测试。 集成条件 一台持续集成服务器：这台服务器的任务是从代码托管服务器自动拉取最新的代码，并且进行代码的编译和打包输出app的安装包，同时发邮件提示团队的其他成员。一般情况下移动端产品都有Android和IOS两个平台，为了兼顾，会选择Ma">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins＋Gradle搭建Android持续集成编译环境">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;02&#x2F;14&#x2F;2017-02-14-jenkins-android-build&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是持续集成持续集成是一种软件开发实践，即开发者多次的将代码集成到主干中，通过持续的编译，能够及时的发现代码库中存在的错误，并且支持测试和产品及时的取包进行测试。 集成条件 一台持续集成服务器：这台服务器的任务是从代码托管服务器自动拉取最新的代码，并且进行代码的编译和打包输出app的安装包，同时发邮件提示团队的其他成员。一般情况下移动端产品都有Android和IOS两个平台，为了兼顾，会选择Ma">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_115.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_123.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_124.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_126.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_125.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;Selection_127.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_128.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_129.png">
+<meta property="og:updated_time" content="2019-10-27T02:24:58.266Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;7xrrm5.com1.z0.glb.clouddn.com&#x2F;&#x2F;blog&#x2F;jenkins&#x2F;Selection_115.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-02-14-jenkins-android-build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/14/2017-02-14-jenkins-android-build/" class="article-date">
+  <time datetime="2017-02-14T04:00:00.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jenkins＋Gradle搭建Android持续集成编译环境
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是持续集成"><a href="#什么是持续集成" class="headerlink" title="什么是持续集成"></a>什么是持续集成</h2><p>持续集成是一种软件开发实践，即开发者多次的将代码集成到主干中，通过持续的编译，能够及时的发现代码库中存在的错误，并且支持测试和产品及时的取包进行测试。</p>
+<h2 id="集成条件"><a href="#集成条件" class="headerlink" title="集成条件"></a>集成条件</h2><ul>
+<li><p>一台持续集成服务器：这台服务器的任务是从代码托管服务器自动拉取最新的代码，并且进行代码的编译和打包输出app的安装包，同时发邮件提示团队的其他成员。一般情况下移动端产品都有Android和IOS两个平台，为了兼顾，会选择Max OSX系统。但本文介绍的话，选择了我自己用的Ubuntu系统，并且只搭建Android端的环境。</p>
+</li>
+<li><p>另外就是需要一个集成工具jenkins</p>
+</li>
+</ul>
+<h2 id="Jenkins的安装"><a href="#Jenkins的安装" class="headerlink" title="Jenkins的安装"></a>Jenkins的安装</h2><p>Jenkins的安装有两种方法</p>
+<ol>
+<li>在<a href="https://jenkins.io/" target="_blank" rel="noopener">Jenkins的官网</a>　下载最新的war包。直接在终端中执行下面的命令就可以了(前提安装了jdk并且配置了相关的环境变量)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cfp@cfp:~$ java -jar jenkins.war</span><br></pre></td></tr></table></figure>
+
+
+<p>这样Jenkins就启动了，war包中自带jetty服务器，安装现在就完成了。第一次启动Jenkins时，出于安全考虑，Jenkins会自动生成一个随机的按照口令。复制下来一会访问页面的时候需要验证。</p>
+<ol start="2">
+<li>通过tomcat部署jenkins,在Ubuntu上安装Tomcat也很简单，一行命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cfp@cfp:~$ sudo apt-get install tomcat7</span><br></pre></td></tr></table></figure>
+
+
+<p>安装成功tomcat后，将第一种方法下载的jenkins的war包放到tomcat的webapps目录下就可以了，具体的位置在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/var/lib/tomcat7/webapps</span><br></pre></td></tr></table></figure>
+
+
+<p>下面看看安装的成果：</p>
+<p>第一种方法访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http://localhost:8080/</span><br></pre></td></tr></table></figure>
+
+
+<p>第二种方法访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http://localhost:8080/jenkins/</span><br></pre></td></tr></table></figure>
+
+
+<p>在按提示验证过后即可打开jenkins的首页</p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_115.png" alt=""></p>
+<h2 id="Jenkins插件的安装"><a href="#Jenkins插件的安装" class="headerlink" title="Jenkins插件的安装"></a>Jenkins插件的安装</h2><p>Jenkins构建Android Studio工程需要安装下面的插件</p>
+<ul>
+<li><p>Gradle plugin: 支持执行gradle构建脚本</p>
+</li>
+<li><p>Git plugin: 代码仓库是基于git的话，用于支持Jenkins拉取远程代码。</p>
+</li>
+<li><p>SSH Credentials Plugin: SSH 证书插件，用于支持Jenkins支持本地存储SSH证书。</p>
+</li>
+</ul>
+<p>点击Jenkins的系统管理-&gt;插件管理-&gt;可选插件，里面可以搜到所需要的插件。</p>
+<p>tip:如果在下载插件中出现了失败，也可以点到插件详情里，手动的下载下来，然后在插件管理-&gt;高级中手动的安装。</p>
+<h2 id="Jenkins全局配置"><a href="#Jenkins全局配置" class="headerlink" title="Jenkins全局配置"></a>Jenkins全局配置</h2><p>点击Jenkins首页, 系统管理-&gt;全局工具配置，可以进入jenkins的全局配置页面。这个页面中进行jdk,git和gradle的配置</p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_123.png" alt=""></p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_124.png" alt=""></p>
+<h2 id="Android项目构建配置"><a href="#Android项目构建配置" class="headerlink" title="Android项目构建配置"></a>Android项目构建配置</h2><ul>
+<li><p>在Jenkins首页“新建”　－&gt; “构建一个自由风格的软件项目”并输入Item名称</p>
+</li>
+<li><p>这样在Jenkins首页就看到这个项目了，点击进入项目详情页，点击左侧的配置，我们用git仓库为例配置代码库，找到“源码管理”　-&gt;选择git,如果使用HTTP协议直接配置HTTP地址即可，如果使用了SSH方式访问git,需要配置Credentials，点击“Add”-&gt;jenkins, 在Kind中选择“SSH Username with private key”, Username 选择服务器主机用户，例如:root, Private Key 选择　Enter directly,将你服务器的ssh私钥复制过来，然后保存，这样在Credentials中选择该用户就可以了。</p>
+</li>
+</ul>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_126.png" alt=""></p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_125.png" alt=""></p>
+<p>接下来配置你构建的分支</p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com/Selection_127.png" alt=""></p>
+<ul>
+<li>构建</li>
+</ul>
+<p>“添加构建步骤”　-&gt; “invoke Gradle script” -&gt; “invoke Gradle” 选择我们在全局工具配置中配置的gradle版本</p>
+<p>Tasks配置任务</p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_128.png" alt=""></p>
+<ul>
+<li>构建后操作</li>
+</ul>
+<p>获取构建成功后的apk文件，然后发送邮件给相关人员</p>
+<p><img src="http://7xrrm5.com1.z0.glb.clouddn.com//blog/jenkins/Selection_129.png" alt=""></p>
+<ul>
+<li>点击立即构建，如果没问题的话一会就有构建成功的提示。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/14/2017-02-14-jenkins-android-build/" data-id="ck28dh6nd000t5d9s35u01tz6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/01/2017-03-10-https-prevent-capture/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android防止抓包
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/26/2016-08-26-android_monkeyrunner/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android自动化测试工具MonkeyRnnner</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Django/" rel="tag">Python Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A0%E5%AF%86/" rel="tag">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Php/" style="font-size: 10px;">Php</a> <a href="/tags/Python-Django/" style="font-size: 10px;">Python Django</a> <a href="/tags/Ubuntu/" style="font-size: 16.67px;">Ubuntu</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 10px;">加密</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 13.33px;">生活</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/01/2019-03-01-SharePreferences%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">SharePreferences源码解读</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/15/2019-02-15-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">设计模式之代理模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/2019-01-30-recyclerview%E5%B1%80%E9%83%A8%E5%88%B7%E6%96%B0%E5%92%8Cdiff%E7%AE%97%E6%B3%95/">RecyclerView局部刷新和Diff算法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/09/2017-06-09-django_install/">Django环境配置</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
